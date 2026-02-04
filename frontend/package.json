@@ -1,0 +1,26 @@
+{
+  "name": "wisp-router-insight-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for WISP Router Insight monitoring system",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'Build process would happen here'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wisp",
+    "monitoring",
+    "mikrotik",
+    "router",
+    "dashboard"
+  ],
+  "author": "WISP Administrator",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {}
+}
