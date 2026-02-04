@@ -1,0 +1,65 @@
+WISP Router Monitoring Setup Guide
+==================================
+
+Step 1: Set up the central server
+---------------------------------
+1. Choose a server/VPS to host your monitoring API
+2. Install Node.js and npm
+3. Copy the server files to your server:
+   - server.js
+   - package.json
+4. Run `npm install` to install dependencies
+5. Modify server.js with your preferred API key
+6. Start the server with `npm start`
+
+Step 2: Prepare the RouterOS script
+----------------------------------
+1. Edit mikrotik-full-report.rsc and update:
+   - serverURL: Change to your server's URL
+   - apiKey: Change to match your server's expected API key
+2. Test the script on one router first
+
+Step 3: Deploy to MikroTik routers
+----------------------------------
+Method A - Via WinBox:
+1. Open WinBox and connect to a router
+2. Go to System > Scripts
+3. Click "+" to add a new script
+4. Name it "wisp-monitoring"
+5. Paste the contents of mikrotik-full-report.rsc
+6. Click "Apply" and "OK"
+
+Method B - Via Terminal:
+1. Connect to router via SSH
+2. Use the following command to import script:
+   ```
+   /import file=wisp-monitoring.rsc
+   ```
+
+Step 4: Verify the setup
+------------------------
+1. Check the server logs to see if data is being received
+2. Look at the router logs for any errors:
+   ```
+   /log print
+   ```
+3. Manually run the script to test:
+   ```
+   /system script run wisp-monitoring
+   ```
+
+Security Recommendations
+------------------------
+1. Use HTTPS for the API endpoint
+2. Implement strong API keys
+3. Consider IP whitelisting on your server
+4. Regularly rotate API keys
+5. Monitor for unusual data patterns
+
+Troubleshooting
+---------------
+- If the script fails, check the router logs
+- Ensure the server URL is accessible from the router
+- Verify the API key is correct
+- Check firewall settings on both ends
+- Test with a simple HTTP endpoint first if needed
